@@ -36,24 +36,24 @@ class App extends Component {
 
     onClick = async () => {
 
-    try{
-        this.setState({blockNumber:"waiting.."});
-        this.setState({gasUsed:"waiting..."});
+      try{
+          this.setState({blockNumber:"waiting.."});
+          this.setState({gasUsed:"waiting..."});
 
-        // get Transaction Receipt in console on click
-        // See: https://web3js.readthedocs.io/en/1.0/web3-eth.html#gettransactionreceipt
-        await web3.eth.getTransactionReceipt(this.state.transactionHash, (err, txReceipt)=>{
-          console.log(err,txReceipt);
-          this.setState({txReceipt});
-        }); //await for getTransactionReceipt
+          // get Transaction Receipt in console on click
+          // See: https://web3js.readthedocs.io/en/1.0/web3-eth.html#gettransactionreceipt
+          await web3.eth.getTransactionReceipt(this.state.transactionHash, (err, txReceipt)=>{
+            console.log(err,txReceipt);
+            this.setState({txReceipt});
+          }); //await for getTransactionReceipt
 
-        await this.setState({blockNumber: this.state.txReceipt.blockNumber});
-        await this.setState({gasUsed: this.state.txReceipt.gasUsed});    
-      } //try
-    catch(error){
-        console.log(error);
-      } //catch
-  } //onClick
+          await this.setState({blockNumber: this.state.txReceipt.blockNumber});
+          await this.setState({gasUsed: this.state.txReceipt.gasUsed});    
+        } //try
+      catch(error){
+          console.log(error);
+        } //catch
+    } //onClick
 
     onSubmit = async (event) => {
       event.preventDefault();
